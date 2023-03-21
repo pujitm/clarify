@@ -11,6 +11,20 @@ datasource db {
     relationMode = "prisma"
 }
 
+model Task {
+    id      BigInt   @id @default(autoincrement())
+    name    String   @db.VarChar(255)
+    content String   @db.Text
+    created DateTime @default(now())
+    updated DateTime @updatedAt
+}
+
+model Parentage {
+    id     String @id @default(cuid())
+    parent BigInt
+    child  BigInt
+}
+
 model Example {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
